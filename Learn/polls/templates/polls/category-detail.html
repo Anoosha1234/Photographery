@@ -1,0 +1,9 @@
+{% extends "polls/base_template.html" %}
+
+{% block content %}
+  <h1>Title: {{ BookingCategories.category_name }}</h1>
+
+  <p><strong>Category Type:</strong>{{ BookingCategories.category_type }}</a></p>
+  <p><strong>Price:</strong> {{ BookingCategories.category_price }}</p>
+  <p><strong>Duration:</strong> {{ BookingCategories.category_duration }}</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "polls/base_template.html" %}
+
+{% block content %}
+  <h1>Photographery</h1>
+  <p>Welcome to Photographery, a website developed by <em>Anoosha Sajid</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The library has the following record counts:</p>
+  <ul>
+    <li><strong>Users:</strong> {{ num_users }}</li>
+    <li><strong>Categories</strong> {{ booking_categories}}</li>
+    <li><strong>Current Bookings:</strong> {{ num_bookings }}</li>
+  </ul>
+{% endblock %}

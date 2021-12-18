@@ -1,0 +1,16 @@
+{% extends "polls/base_template.html" %}
+
+{% block content %}
+  <h1>Category List</h1>
+  {% if BookingCategories_list %}
+  <ul>
+    {% for category in BookingCategories_list %}
+      <li>
+        <a href="{{ category.get_absolute_url }}">{{ category.category_name }}</a> ({{category.category_type}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no categories in the library.</p>
+  {% endif %}
+{% endblock %}
