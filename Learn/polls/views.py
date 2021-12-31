@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
-from .models import User, UserAddress, BookingCategories, ServiceDetails, CurrentBookings, UserHistory, Photographers
+from .models import User, UserAddress, BookingCategories, WebsiteForm, CurrentBookings, UserHistory, Photographers
 
 def index(request):
 

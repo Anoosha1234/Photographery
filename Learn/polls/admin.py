@@ -9,7 +9,7 @@ from .models import UserAddress
 from .models import UserHistory
 from .models import BookingCategories
 from .models import Photographers
-from .models import ServiceDetails
+from .models import WebsiteForm
 from .models import CurrentBookings
 
 #admin.site.register(User)
@@ -17,7 +17,7 @@ from .models import CurrentBookings
 #admin.site.register(UserReviews)
 #admin.site.register(BookingCategories)
 #admin.site.register(Photographers)
-#admin.site.register(ServiceDetails)
+#admin.site.register(WebsiteForm)
 #admin.site.register(CurrentBookings)
 
 
@@ -30,7 +30,6 @@ class UserAdmin(admin.ModelAdmin):
     inlines = [UserAddressInline]
 
 admin.site.register(User, UserAdmin)
-
 
 # Register the Admin classes for UserAddress using the decorator
 @admin.register(UserAddress)
@@ -57,7 +56,7 @@ class BookingAdmin(admin.ModelAdmin):
 class UserHistory(admin.ModelAdmin):
     list_display = ('user', 'user_service')
 
-@admin.register(ServiceDetails)
-class UserHistory(admin.ModelAdmin):
-    list_display = ('service_name', 'id', 'created_at')
-    list_filter = ('service_name', 'begins_at', 'ends_at')
+@admin.register(WebsiteForm)
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ('your_name', 'your_email', 'subject', 'message')
+    list_filter = ('your_name', 'your_email')

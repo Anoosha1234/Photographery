@@ -46,24 +46,22 @@ class BookingCategories(models.Model):
     class Meta:
         verbose_name_plural = 'Booking Categories'
 
-class ServiceDetails(models.Model):
-    service_name = models.ForeignKey(BookingCategories, on_delete=models.CASCADE)
-    id = models.BigAutoField(primary_key=True)
-    created_at = models.DateTimeField()
-    begins_at = models.DateTimeField()
-    ends_at = models.DateTimeField()
+class WebsiteForm(models.Model):
+    your_name = models.CharField(max_length=50)
+    your_email = models.EmailField(max_length=30)
+    subject = models.CharField(max_length=200)
+    message = models.CharField(max_length=700)
 
     def __str__(self):
-        return str(self.service_name)
+        return str(self.your_name)
 
     class Meta:
-        db_table="ServiceDetails"
-        verbose_name_plural = 'Service Details'
+        verbose_name_plural = 'Website Form'
 
 
 class CurrentBookings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    service = models.ForeignKey(ServiceDetails, on_delete=models.CASCADE)
+    service = models.ForeignKey(BookingCategories, on_delete=models.CASCADE)
     fulfillment = models.BooleanField()
     has_paid = models.BooleanField()
 
