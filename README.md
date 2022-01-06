@@ -1,6 +1,6 @@
 # Photographery
 
-Photographery is a photography website made with Python Django and sqlite. 
+Photographery is a photography website made with Python Django and Sqlite. 
 
 ## Installation
 
