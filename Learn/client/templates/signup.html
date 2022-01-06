@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+    <title>Login</title>
+</head>
+
+<body>
+    <!-- ======= signup Section ======= -->
+    <div class="signup-main">
+        <div class="signup-body">
+            <form class="input-group-signup" action='signup' method="post">
+                {% csrf_token %}
+                <input type="name" class="input-field input-1" placeholder="First Name" name='fname' required>
+                <input type="name" class="input-field input-2" placeholder="Last Name" name='lname' optional>
+                <input type="number" class="input-field" placeholder="Phone Number" name='phone'required>
+                <input type="text" class="input-field" placeholder="Address" name="address" required>
+                <input type="text" class="input-field input-3" placeholder="City" name="city" required>
+                <input type="text" class="input-field input-4" placeholder="Country" name="country" required>
+                <input type="text" class="input-field" placeholder="Postal Code" name="pcode" optional>
+                <input type="email" class="input-field" placeholder="Email" name="email" required>
+                <input type="password" class="input-field" id="passwordSignup" name="pass1" placeholder="Enter Password" required>
+                <div id="toggleSignup" onclick="showHideSignup();"></div>
+                <input type="password" class="input-field" id="passwordConfirm" name="pass2" placeholder="Confirm Password" required>
+                <div id="toggleConfirm" onclick="showHideConfirm();"></div>
+                <input type="checkbox" class="chech-box"><span>I accept the Terms and
+                    Conditions</span><br>
+                <span>Already have an Account ?</span>
+                <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#login">Login</a>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+    </div>
+
+    <!-- Signup Page Password Show Hide Button -->
+    <script type="text/javascript">
+        const passwordSignup = document.getElementById('passwordSignup');
+        const toggleSignup = document.getElementById('toggleSignup');
+
+        function showHideSignup() {
+            if (passwordSignup.type === 'password') {
+                passwordSignup.setAttribute('type', 'text');
+                toggleSignup.classList.add('hideSignup')
+            }
+            else {
+                passwordSignup.setAttribute('type', 'password');
+                toggleSignup.classList.remove('hideSignup')
+            }
+        }
+    </script>
+    <!-- Signup Page Confirm Password Show Hide Button -->
+    <script type="text/javascript">
+        const passwordConfirm = document.getElementById('passwordConfirm');
+        const toggleConfirm = document.getElementById('toggleConfirm');
+
+        function showHideConfirm() {
+            if (passwordConfirm.type === 'password') {
+                passwordConfirm.setAttribute('type', 'text');
+                toggleConfirm.classList.add('hideConfirm')
+            }
+            else {
+                passwordConfirm.setAttribute('type', 'password');
+                toggleConfirm.classList.remove('hideConfirm')
+            }
+        }
+    </script>
+    <!-- End Signup -->
+</body>
+
+</html>

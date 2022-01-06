@@ -20,12 +20,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('index/', include('polls.urls')),
+    path('',include('client.urls')),
     path('admin/', admin.site.urls),
+
 ]
 
-urlpatterns += [
-    path('', RedirectView.as_view(url='index/', permanent=True)),
-]
+# urlpatterns += [
+#     path('', RedirectView.as_view(url='index/', permanent=True)),
+# ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

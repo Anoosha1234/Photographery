@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+  <title>Login</title>
+</head>
+
+<body>
+  <div class="login-main">
+    <div class="login-body">
+      <div class="social-links-main">
+        <div class="social-links text-center text-md-right pt-3 pt-md-0">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+      <form id="login" class="input-group-login" action="order" method="post">
+        {% csrf_token %}
+        <h2>Book Appoinment</h2>
+        <p> Please fill the form below to book your appointment!</p>
+        <input type="text" class="input-field" id="usr" name="name" placeholder="User Name">
+        <input type="text" class="input-field" id="usr" name="phone" placeholder="User phone">
+        <div class="form-group">
+          <label for="">Category</label>
+          <select name="category" id="">
+            <option selected="selected" disabled>please choose an option:</option>
+
+            {%for i in booking%}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+        <label for="">Choose Photographer</label>
+        <select  name="photographer">
+
+          <option selected="selected" disabled>please choose an option:</option>
+          {%for i in photographer%}
+          <option value="{{i}}">{{i}}</option>
+          {% endfor %}
+        </select>
+        </div>
+
+
+        <input type="text" class="input-field" id="usr" name="address" placeholder="Address">
+        <input type="datetime-local" class="input-field" id="usr" name="date" placeholder="Date">
+        <button type="submit" class="login-btn">Book</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+
+</html>
