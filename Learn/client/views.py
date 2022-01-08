@@ -3,20 +3,21 @@ from django.contrib.auth.models import User as us
 from django.http import HttpResponse
 from django.contrib import messages
 from datetime import datetime
+from django.contrib.auth import authenticate
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from django.core.exceptions import ObjectDoesNotExist
+from .models import BookApointment,UserAddress,User,BookingCategories,Photographers,CurrentBookings,WebsiteForm,UserHistory
 
-#creating views here
-
-
+#Email settings
 server=smtplib.SMTP('smtp.gmail.com:587')
 server.ehlo()
 server.starttls()
 server.login('photographerywebsite@gmail.com','kvyiutzopbyjaiqe')   #password: django@123
 
-from .models import BookApointment,UserAddress,User,BookingCategories,Photographers,CurrentBookings,WebsiteForm,UserHistory
-from django.contrib.auth import authenticate
+
+
 login_user_name=''
 def home(request):
     if request.method=="POST":
@@ -28,8 +29,9 @@ def home(request):
         obj=WebsiteForm(your_name=name,your_email=email,subject=subject,message=message)
         obj.save()
         messages.info(request,'Thanks for your message')
-        return redirect('/')
-    return render(request, 'index.html')
+        return redirect('/#contact')
+    else:
+        return render(request, 'index.html')
 
 
 def order(request):
@@ -88,7 +90,7 @@ def order(request):
         # serv=ServiceDetails.objects.get(id=users.id)
         # email=users.user_email
         # print("^^^^^^^^^^^^^^^^^^^^^^^^",email,"***************************")
-        server.sendmail('djangoproject0347@gmail.com',str(users.user_email), message.as_string())
+        server.sendmail('photographerywebsite@gmail.com',str(users.user_email), message.as_string())
 
         # serv=ServiceDetails.objects.get(id=users.id)
         serv=BookingCategories.objects.get(category_name=category)
@@ -114,11 +116,8 @@ def login(request):
         email=request.POST['email']
         password=request.POST['pass1']
         user = authenticate(email=email, password=password)
-        if user is not None:
-            # A backend authenticated the credentials
-            messages.info("invalid credentials ")
-            return redirect(request,'/login')
-        else:
+
+        try:
             uk=us.objects.get(email=email)
             # u=user.objects.get(user_email=email)
             print(user)
@@ -139,6 +138,12 @@ def login(request):
             print(ph)
             return render(request,'order.html',{'booking':ct,'photographer':ph})
             # No backend authenticated the credentials
+
+        except ObjectDoesNotExist:
+            messages.error(request,'username or password not correct')
+            # A backend authenticated the credentials
+            return render(request,'login.html')
+
     else:
         return render(request, 'login.html')
 
