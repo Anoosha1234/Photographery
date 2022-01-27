@@ -25,15 +25,25 @@
                     <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                 </div>
             </div>
-            <form id="login" class="input-group-login" action="login" method="post">
+            <form id="login" class="input-group-login" role="form" action="login" method="post">
                 {% csrf_token %}
                 <input type="text" class="input-field" name="email" placeholder="Enter Your Email" required>
                 <input type="password" class="input-field" name="pass1" id="passwordLogin" placeholder="Enter Your Password"
                     required>
                 <div id="toggleLogin" onclick="showHideLogin();">
                 </div>
-                <a href="#" class="forgot-password">Forgot Password ?</a>
+                <a href="signup" class="forgot-password">Forgot Password ?</a>
                 <button type="submit" class="login-btn">Log in</button>
+
+                <!-- Error Message for invalid credentials -->
+                {% for message in messages %}
+                &nbsp;
+                <div class="alert alert-success">
+                  <a class="close" href="#" data-dismiss="alert">×</a>
+                  {{ message }}
+                </div>
+                {% endfor %}
+
             </form>
         </div>
     </div>
@@ -54,6 +64,8 @@
         }
     </script>
     <!-- End Login -->
+
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

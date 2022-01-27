@@ -40,7 +40,7 @@ class BookApointment(models.Model):
     user_booking_address = models.CharField(max_length=30)
 
     def __str__(self):
-        return str(f'{self.user_booking_name}, {self.user_booking_phone}')
+        return str(f'{self.user_booking_name}, {self.user_booking_phone}, {self.user_booking_datetime}, {self.user_booking_category}, {self.user_booking_photographer}, {self.user_booking_address}')
 
     class Meta:
         verbose_name_plural = 'Book Apointment'

@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+  <link href="{% static 'css/style.css'%}" rel="stylesheet">
+  <title>User Details</title>
+    <link type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/theme.css'%}" rel="stylesheet">
+    <link type="text/css" href="{% static 'images/icons/css/font-awesome.css'%}" rel="stylesheet">
+    <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+
+
+  
+</head>
+
+<body>
+  <div class="" style="m-2">
+
+    <header id="header" class="fixed-top" style="background-color: azure;">
+      <div class="container d-flex align-items-center p-0 justify-content-between">
+  
+        <h1 class="logo mr-auto"><a href="" style="color:#444444">Photographery</a></h1>
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <li class="d-flex" style="gap: 1rem;">
+                <label style="margin: 4px;">User</label>
+                <input type="text" name="logout"class="form-control" style="color:#444444" value='{{ loginuser }}' readonly>
+                <input type="submit" class="btn btn-sm btn-primary" value="Logout" style="background-color: purple;">
+              </li>
+             
+            <!-- <a href='logout' class="btn" type="submit" action="logout" >Logout</a> -->
+            </form>
+          </ul>
+        </nav><!-- .nav-menu -->
+      </div>
+    </header><!-- End Header -->
+    
+  
+    <!-- Start Welcome section -->
+    <section id="Welcome" class="customer">              --              
+      <div class="order-body d-flex flex-row"> 
+
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="{% url 'order'%}" class="nav-link link-dark">
+                        Book Appointment
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'order_details'%}" class="nav-link link-dark">
+                        Current Booking
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'user_details'%}" class="nav-link active" style="background-color: purple;">
+                        Profile
+                    </a>
+                </li>
+            </ul>
+        </div>
+    <!-- ======= Section for bookings and new booking ======= -->
+      <section id="Form" class="data" style="padding: 0;">
+          <div class="card-view d-flex justify-content-center align-items-center">
+            <div class="card-main" style="margin-left: 10rem;">
+
+              <div class="card-view d-flex justify-content-center align-items-center">
+                <div class="card">
+                  <form action="user_details" method="post">
+                    {% csrf_token %}
+                    <div class="card card-1">
+                      <style>
+                        th{
+                          border: 1px solid black;
+                          padding: 5px;
+                        }
+                        tr{
+                          border: 1px solid black;
+                        }
+                        td{
+                          border: 1px solid black;
+                          padding: 5px;
+                        }
+                      </style>
+                      <h4 class="title text-center">User Details:</h4>
+                      <table>
+                        <tr>
+                          <th>First Name</th>
+                          <td>
+                            <input type="text" value="{{fname}}" name='fname'>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Last Name</th>
+                          <td>
+                            <input type="text" value="{{lname}}" name='lname'>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Phone Number</th>
+                          <td>
+                            <input type="text" value="{{phone}}" name='phone'>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Address</th>
+                          <td>
+                            <input type="text" value="{{address}}" name=address>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>City</th>
+                          <td>
+                            <input type="text" value="{{city}}" name='city'>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Country</th>
+                          <td>
+                            <input type="text" value="{{country}}" name='country'>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Postal Code</th>
+                          <td>
+                            <input type="text" value="{{code}}" name='code'>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Email</th>
+                          <td>
+                            <input type="text" value="{{loginuser}}" name="loginuser">
+                          </td>
+                        </tr>
+                      </table>
+                      <button class="btn btn-primary" style="background-color: purple; margin: 20px;">Update</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+              </div>
+          </div>
+        </section>
+  
+  
+    <!-- ======= Section for User details ======= -->
+        
+      </section>
+
+
+
+
+</div>
+
+
+  
+
+    <!-- Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'scripts/jquery-1.9.1.min.js'%}" type="text/javascript"></script>
+    <script src="{% static 'scripts/jquery-ui-1.10.1.custom.min.js'%}" type="text/javascript"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}" type="text/javascript"></script>
+    <script src="{% static 'scripts/flot/jquery.flot.js'%}" type="text/javascript"></script>
+    <script src="{% static 'scripts/flot/jquery.flot.resize.js'%}" type="text/javascript"></script>
+    <script src="{% static 'scripts/datatables/jquery.dataTables.js'%}" type="text/javascript"></script>
+    <script src="{% static 'scripts/common.js'%}" type="text/javascript"></script>
+    <!-- <script src="{% static ''%}" type="text/javascript"></script>
+    <script src="{% static ''%}" type="text/javascript"></script>
+    <script src="{% static ''%}" type="text/javascript"></script>
+
+    <script src="" type="text/javascript"></script>
+    <script src="" type="text/javascript"></script>
+    <script src="" type="text/javascript"></script>
+    <script src="" type="text/javascript"></script>
+    <script src="" type="text/javascript"></script>
+    <script src="" type="text/javascript"></script> -->
+
+</body>
+
+</html>
