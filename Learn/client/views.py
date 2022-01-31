@@ -123,7 +123,7 @@ def order(request):
             # print(name,description,date)
             # print(type(date))
             # print(type(time))
-            
+
             booking=BookingCategories.objects.all()
             ct=[]
             for i in booking:
@@ -141,7 +141,7 @@ def order(request):
             #     if i.user_booking_name==name:
             #         print(i.user_booking_name,i.user_booking_phone,i.user_booking_datetime,i.user_booking_photographer,i.user_booking_address,i.user_booking_category)
             # print(bk)
-            return render(request,'order_details.html' 
+            return render(request,'order_details.html'
             ,{
             # 'booking':ct,
             # 'photographer':ph,
@@ -191,7 +191,7 @@ def order(request):
             # "country":his.user_country,
             # "code":his.user_zip_code
             }
-            ) 
+            )
         else:
 
             return render(request,'login.html')
@@ -218,7 +218,7 @@ def order_details(request):
             phone=request.POST['phone']
             address=request.POST['address']
             BookApointment.objects.filter(id=int(id)).update(user_booking_phone=phone,user_booking_address=address)
-            return render(request,'order_details.html' 
+            return render(request,'order_details.html'
             ,{
             'book':fetch_book(user_name),
             'loginuser':user_email,
@@ -230,7 +230,7 @@ def order_details(request):
             id=request.POST['id']
             BookApointment.objects.filter(id=int(id)).delete()
 
-            return render(request,'order_details.html' 
+            return render(request,'order_details.html'
             ,{
             'book':fetch_book(user_name),
             'loginuser':user_email,
@@ -239,7 +239,7 @@ def order_details(request):
 
     else:
         try:
-            return render(request,'order_details.html' 
+            return render(request,'order_details.html'
             ,{
             'book':fetch_book(user_name),
             'loginuser':user_email,
@@ -296,7 +296,7 @@ def user_details(request):
         try:
             u=User.objects.get(user_email=user_email)
             his=UserAddress.objects.get(user=u)
-            return render(request,'user_details.html' 
+            return render(request,'user_details.html'
             ,{
             'loginuser':user_email,
             "fname":u.user_first_name,
@@ -330,7 +330,7 @@ def login(request):
                 print("login_process")
                 login_user.append((email,password))
                 print("login users",login_user)
-                
+
                 # print("password check",uk.check_password(password))
                 u=User.objects.get(user_email=email)
                 user_email=email
@@ -341,7 +341,7 @@ def login(request):
                 login_user_name=uk.username
                 uk=User.objects.get(user_first_name=user_name)
                 login_user_name=uk.user_first_name
-                print('###########################################33')
+                print('###########################################')
                 print(login_user_name)
                 booking=BookingCategories.objects.all()
                 ct=[]
@@ -383,7 +383,7 @@ def login(request):
             messages.error(request,'username or password not correct')
             # A backend authenticated the credentials
             return render(request,'login.html')
-        
+
 
     else:
         return render(request, 'login.html')
