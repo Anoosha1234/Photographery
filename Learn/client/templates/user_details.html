@@ -17,7 +17,7 @@
     <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
 
 
-  
+
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 
     <header id="header" class="fixed-top" style="background-color: azure;">
       <div class="container d-flex align-items-center p-0 justify-content-between">
-  
+
         <h1 class="logo mr-auto"><a href="" style="color:#444444">Photographery</a></h1>
         <nav class="nav-menu d-none d-lg-block">
           <ul>
@@ -36,18 +36,26 @@
                 <input type="text" name="logout"class="form-control" style="color:#444444" value='{{ loginuser }}' readonly>
                 <input type="submit" class="btn btn-sm btn-primary" value="Logout" style="background-color: purple;">
               </li>
-             
+
             <!-- <a href='logout' class="btn" type="submit" action="logout" >Logout</a> -->
             </form>
           </ul>
         </nav><!-- .nav-menu -->
       </div>
     </header><!-- End Header -->
-    
-  
+    &nbsp;
+
     <!-- Start Welcome section -->
-    <section id="Welcome" class="customer">              --              
-      <div class="order-body d-flex flex-row"> 
+    <section id="Welcome" class="customer">              --
+      <div class="order-body">
+        <div class="section-title">
+          <h2>Welcome Customer!</h2>
+          <h3>Thank you for choosing <wbr><span>Photographery!</span></h3>
+          <p>As one of the best photographer teams, we pride ourselves of having covered
+            a plethora of celebrity and high-end events all and around the city!
+          </p>
+        </div>
+      <div class="order-body d-flex flex-row">
 
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
             <ul class="nav nav-pills flex-column mb-auto">
@@ -152,10 +160,10 @@
               </div>
           </div>
         </section>
-  
-  
+
+
     <!-- ======= Section for User details ======= -->
-        
+
       </section>
 
 
@@ -164,7 +172,7 @@
 </div>
 
 
-  
+
 
     <!-- Main JS File -->
     <script src="{% static 'js/main.js' %}"></script>
