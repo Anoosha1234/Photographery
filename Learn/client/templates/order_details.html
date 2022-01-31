@@ -24,7 +24,7 @@
 <body>
     <div class="mt-5 ml-2">
 
-        <header id="header" class="fixed-top" style="background-color: azure;">
+        <header id="header" class="fixed-top" style="background-color: thistle;">
             <div class="container d-flex align-items-center p-0 justify-content-between">
 
                 <h1 class="logo mr-auto"><a href="" style="color:#444444">Photographery</a></h1>
@@ -60,80 +60,78 @@
             <div class="order-body d-flex flex-row">
 
 
-                <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-                    <ul class="nav nav-pills flex-column mb-auto">
-                        <li class="nav-item">
-                            <a href="{% url 'order'%}" class="nav-link link-dark">
-                                Book Appointment
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'order_details'%}" class="nav-link active" style="background-color: purple;">
-                                Current Booking
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'user_details'%}" class="nav-link link-dark">
-                                Profile
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- ======= Section for bookings and new booking ======= -->
-                <section id="Form" class="data" style="padding: 0;">
-                        <div class="card-view d-flex justify-content-center align-items-center">
-                            <div class="card-main">
-                                <div class="card card-3 m-2 p-2" style="width: 65rem;">
-                                    <h4 class="title text-center"><a href="">Current Bookings</a></h4>
-                                    <p class="description text-center"> You can manage your current bookings here!</p>
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'order'%}" class="nav-link link-dark">
+                            Book Appointment
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'order_details'%}" class="nav-link active" style="background-color: purple;">
+                            Current Booking
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'user_details'%}" class="nav-link link-dark">
+                            Profile
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- ======= Section for bookings and new booking ======= -->
+            <section id="Form" class="data" style="padding: 0;">
+                  <div class="card-view d-flex justify-content-center align-items-center">
+                    <div class="card-main">
+                      <div class="card card-3 m-2 p-2" style="width: 65rem;">
+                        <h4 class="title text-center"><a href="">Current Bookings</a></h4>
+                        <p class="description text-center"> You can manage your current bookings here!</p>
 
 
 
-                                    <table class="table" style="table-layout: auto; font-size: 15px;">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Category</th>
-                                                <th scope="col">Photographer</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Phone</th>
-                                                <th scope="col">Address</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for i in book %}
-                                            <!-- <p>{{ i. }}</p> -->
-                                            <form action="{% url 'order_details' %}" method="post">
-                                                {% csrf_token %}
-                                                <tr>
-                                                    <td><input style="width: 3rem; padding-right: 0;" type="number" name="id" value="{{ i.0 }}" readonly></td>
-                                                    <td>{{ i.1 }}</td>
-                                                    <td>{{ i.2 }}</td>
-                                                    <td>{{ i.3 }}</td>
-                                                    <td><input type="text" name="name" value="{{ i.4 }}" readonly></td>
-                                                    <td><input type="text" name="phone" value="{{ i.5 }}"></td>
-                                                    <td><input type="text" name="address" value="{{ i.6 }}"></td>
+                        <table class="table" style="table-layout: auto; font-size: 15px;">
+                          <thead class="thead-light">
+                              <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Category</th>
+                                  <th scope="col">Photographer</th>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Phone</th>
+                                  <th scope="col">Address</th>
+                                  <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for i in book %}
+                              <!-- <p>{{ i. }}</p> -->
+                              <form action="{% url 'order_details' %}" method="post">
+                                  {% csrf_token %}
+                                  <tr>
+                                    <td><input style="width: 3rem; padding-right: 0;" type="number" name="id" value="{{ i.0 }}" readonly></td>
+                                    <td>{{ i.1 }}</td>
+                                    <td>{{ i.2 }}</td>
+                                    <td>{{ i.3 }}</td>
+                                    <td><input type="text" name="name" value="{{ i.4 }}" readonly></td>
+                                    <td><input type="text" name="phone" value="{{ i.5 }}"></td>
+                                    <td><input type="text" name="address" value="{{ i.6 }}"></td>
 
-                                                    <td>
+                                    <td>
 
-                                                        <input type="submit" class="btn btn-sm btn-primary" name="edit"
-                                                            value="Edit" style="background-color: purple;">
+                                      <input type="submit" class="btn btn-sm btn-primary" name="edit"
+                                          value="Edit" style="background-color: purple;">
 
-                                                        <input type="submit" class="btn btn-sm btn-primary"
-                                                            name="delete" value="Delete" style="background-color: red;">
-                                                    </td>
-                                                </tr>
-                                            </form>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-
-
-                                </div>
-                            </div>
-                        </div>
+                                      <input type="submit" class="btn btn-sm btn-primary"
+                                          name="delete" value="Delete" style="background-color: red;">
+                                    </td>
+                                  </tr>
+                                </form>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
                 </section>
 
         </section>
