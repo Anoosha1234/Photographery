@@ -26,7 +26,7 @@ class UserAddressInline(admin.TabularInline):
 
 # Define the admin class
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id','user_first_name', 'user_last_name', 'user_account_name', 'is_super_user')
+    list_display = ('id','user_first_name', 'user_last_name', 'user_account_name')
     inlines = [UserAddressInline]
 
 admin.site.register(User, UserAdmin)

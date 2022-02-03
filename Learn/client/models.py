@@ -1,12 +1,13 @@
 from django.db import models
+from django_enumfield import enum
+from django.utils.translation import ugettext_lazy
 
 class User(models.Model):
     user_first_name = models.CharField(max_length=50)
     user_last_name = models.CharField(max_length=50)
     user_email = models.EmailField(max_length=30)
-    user_password = models.CharField(max_length=50)
+    user_password = models.CharField(max_length=100)
     user_account_name = models.CharField(max_length=30)
-    is_super_user = models.BooleanField()
 
     def __str__(self):
         return self.user_first_name
@@ -45,8 +46,21 @@ class BookApointment(models.Model):
     class Meta:
         verbose_name_plural = 'Book Apointment'
 
+class Category_types(enum.Enum):
+    Wedding = 0
+    Portraits = 1
+    Fashion = 2
+    Formal_Events = 3
+    Tourism = 4
+    Portfolio = 5
+
+    __labels__ = {
+        Formal_Events: ugettext_lazy("Formal Events")
+    }
+
+
 class BookingCategories(models.Model):
-    category_type  = models.CharField(max_length=40)
+    category_type  = enum.EnumField(Category_types, default=Category_types.Wedding)
     category_name = models.CharField(max_length=40)
     category_duration = models.DurationField()
     category_price = models.DecimalField(max_digits = 5, decimal_places = 2)

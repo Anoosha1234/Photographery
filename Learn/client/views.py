@@ -410,7 +410,7 @@ def signup(request):
                 messages.info(request,'email already exists')
                 return redirect('/signup')
             r=us.objects.create_user(username=fname,email=email,password=password,first_name=fname,last_name=lname)
-            user=User(user_first_name=fname,user_last_name=lname,user_email=email,user_password=make_password(password),is_super_user=False,user_account_name=fname+lname)
+            user=User(user_first_name=fname,user_last_name=lname,user_email=email,user_password=make_password(password),user_account_name=fname+lname)
             # user.first_name=fname
             # user.last_name=lname
 
