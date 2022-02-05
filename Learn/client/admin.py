@@ -9,7 +9,6 @@ from .models import UserAddress
 from .models import UserHistory
 from .models import BookingCategories
 from .models import Photographers
-from .models import CurrentBookings
 from .models import BookApointment
 from .models import WebsiteForm
 #admin.site.register(User)
@@ -18,7 +17,6 @@ from .models import WebsiteForm
 #admin.site.register(BookingCategories)
 #admin.site.register(Photographers)
 #admin.site.register(ServiceDetails)
-#admin.site.register(CurrentBookings)
 
 
 class UserAddressInline(admin.TabularInline):
@@ -42,10 +40,6 @@ class BookingAdmin(admin.ModelAdmin):
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('category_name', 'category_type', 'category_duration', 'category_price')
 
-# Register the Admin classes for CurrentBookings using the decorator
-@admin.register(CurrentBookings)
-class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'service', 'fulfillment', 'has_paid')
 
 # Register the Admin classes for Photographers using the decorator
 @admin.register(Photographers)

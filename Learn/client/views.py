@@ -13,7 +13,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from django.core.exceptions import ObjectDoesNotExist
-from .models import BookApointment,UserAddress,User,BookingCategories,Photographers,CurrentBookings,WebsiteForm,UserHistory
+from .models import BookApointment,UserAddress,User,BookingCategories,Photographers,WebsiteForm,UserHistory
 from django.contrib.auth.hashers import make_password
 #Email settings
 server=smtplib.SMTP('smtp.gmail.com:587')
@@ -113,9 +113,6 @@ def order(request):
 
             # serv=ServiceDetails.objects.get(id=users.id)
             serv=BookingCategories.objects.get(category_name=category)
-
-            current=CurrentBookings(user=users,service=serv,fulfillment=False,has_paid=False)
-            current.save()
 
             history=UserHistory(user=users,user_service=serv,fulfillment=False,order_date=date)
             history.save()
@@ -229,6 +226,7 @@ def order_details(request):
             # name=request.POST['edit']
             id=request.POST['id']
             BookApointment.objects.filter(id=int(id)).delete()
+            UserHistory.objects.filter(id=int(id)).delete()
 
             return render(request,'order_details.html'
             ,{

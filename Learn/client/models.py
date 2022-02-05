@@ -44,7 +44,7 @@ class BookApointment(models.Model):
         return str(f'{self.user_booking_name}, {self.user_booking_phone}, {self.user_booking_datetime}, {self.user_booking_category}, {self.user_booking_photographer}, {self.user_booking_address}')
 
     class Meta:
-        verbose_name_plural = 'Book Apointment'
+        verbose_name_plural = 'Book Appointment'
 
 class Category_types(enum.Enum):
     Wedding = 0
@@ -74,19 +74,6 @@ class BookingCategories(models.Model):
 
     class Meta:
         verbose_name_plural = 'Booking Categories'
-
-
-class CurrentBookings(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    service = models.ForeignKey(BookingCategories, on_delete=models.CASCADE)
-    fulfillment = models.BooleanField()
-    has_paid = models.BooleanField()
-
-    def __str__(self):
-        return str(self.service)
-
-    class Meta:
-        verbose_name_plural = 'Current Bookings'
 
 
 class UserHistory(models.Model):
