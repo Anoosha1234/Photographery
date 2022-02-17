@@ -13,5 +13,7 @@ urlpatterns = [
     path('order_details',views.order_details, name='order_details'),
     path('user_details',views.user_details, name='user_details'),
     path('admin:index/', admin.site.urls, name='admin'),
+    path('forgot_Password/', views.forgot_Password, name='forgot_Password'),
+    path('forgotEmail/', views.forgotEmail, name='forgotEmail'),
 
 ]

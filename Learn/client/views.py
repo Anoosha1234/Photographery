@@ -429,3 +429,41 @@ def signup(request):
         # return redirect('/login')
     else:
         return render(request, 'signup.html')
+
+
+def forgotEmail(request):
+    print(request.method)
+    if request.method=='POST':
+        email=request.POST['email']
+        print(email)
+        try:
+            u=User.objects.filter(user_email=email)[0]
+            print("user :",u)
+            return render(request,'forgot_Password.html',{'email':email})
+        except Exception as e:
+            print(e)
+            messages.error(request,'email not found')
+            return redirect('/forgotEmail')
+    else:
+        return render(request,'forgotEmail.html')
+
+def forgot_Password(request):
+    print(request.method)
+    if request.method=='POST':
+        email=request.POST['email']
+        password=request.POST['pass1']
+        password1=request.POST['pass2']
+        print(email,password,password1)
+        if password==password1:
+            u=User.objects.get(user_email=email)
+            u.user_password=make_password(password)
+            u.save()
+            user=us.objects.get(email=email)
+            user.set_password(password)
+            user.save()
+            return redirect('/login')
+        else:
+            messages.error(request,"password not match")
+            return redirect('/forgot_Password')
+    else:
+        return render(request,'forgot_Password.html')
