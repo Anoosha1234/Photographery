@@ -6,7 +6,7 @@ class User(models.Model):
     user_first_name = models.CharField(max_length=50)
     user_last_name = models.CharField(max_length=50)
     user_email = models.EmailField(max_length=30)
-    user_password = models.CharField(max_length=100)
+    user_password = models.CharField(max_length=30)
     user_account_name = models.CharField(max_length=30)
 
     def __str__(self):
