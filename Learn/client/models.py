@@ -3,11 +3,11 @@ from django_enumfield import enum
 from django.utils.translation import ugettext_lazy
 
 class User(models.Model):
-    user_first_name = models.CharField(max_length=50)
-    user_last_name = models.CharField(max_length=50)
+    user_first_name = models.CharField(max_length=30)
+    user_last_name = models.CharField(max_length=30)
     user_email = models.EmailField(max_length=30)
     user_password = models.CharField(max_length=30)
-    user_account_name = models.CharField(max_length=30)
+    user_account_name = models.CharField(max_length=60)
 
     def __str__(self):
         return self.user_first_name
@@ -95,7 +95,7 @@ class Photographers(models.Model):
     photographer_last_name = models.CharField(max_length=40)
     photographer_expertise = models.CharField(max_length=40)
     photographer_experience = models.IntegerField()
-    photographer_pay = models.IntegerField()
+    photographer_pay = models.DecimalField(max_digits = 5, decimal_places = 2)
 
     class Meta:
         ordering = ['photographer_last_name', 'photographer_first_name']
