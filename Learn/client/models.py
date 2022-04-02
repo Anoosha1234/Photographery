@@ -31,20 +31,6 @@ class UserAddress(models.Model):
     class Meta:
         verbose_name_plural = 'User Address'
 
-class BookApointment(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_booking_name = models.CharField(max_length=30)
-    user_booking_phone = models.CharField(max_length=30)
-    user_booking_datetime = models.DateTimeField()
-    user_booking_category = models.CharField(max_length=30)
-    user_booking_photographer = models.CharField(max_length=30)
-    user_booking_address = models.CharField(max_length=30)
-
-    def __str__(self):
-        return str(f'{self.user_booking_name}, {self.user_booking_phone}, {self.user_booking_datetime}, {self.user_booking_category}, {self.user_booking_photographer}, {self.user_booking_address}')
-
-    class Meta:
-        verbose_name_plural = 'Book Appointment'
 
 class Category_types(enum.Enum):
     Wedding = 0
@@ -93,7 +79,7 @@ class UserHistory(models.Model):
 class Photographers(models.Model):
     photographer_first_name = models.CharField(max_length=40)
     photographer_last_name = models.CharField(max_length=40)
-    photographer_expertise = models.CharField(max_length=40)
+    photographer_expertise = enum.EnumField(Category_types, default=Category_types.Wedding)
     photographer_experience = models.IntegerField()
     photographer_pay = models.DecimalField(max_digits = 5, decimal_places = 2)
 
@@ -104,6 +90,21 @@ class Photographers(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.photographer_last_name}, {self.photographer_first_name}'
+
+class BookApointment(models.Model):
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_booking_name = models.CharField(max_length=30)
+    user_booking_phone = models.CharField(max_length=30)
+    user_booking_datetime = models.DateTimeField()
+    user_booking_category = models.CharField(max_length=30)
+    user_booking_photographer = models.CharField(max_length=30)
+    user_booking_address = models.CharField(max_length=30)
+
+    def __str__(self):
+        return str(f'{self.user_booking_name}, {self.user_booking_phone}, {self.user_booking_datetime}, {self.user_booking_category}, {self.user_booking_photographer}, {self.user_booking_address}')
+
+    class Meta:
+        verbose_name_plural = 'Book Appointment'
 
 class WebsiteForm(models.Model):
     your_name = models.CharField(max_length=50)
