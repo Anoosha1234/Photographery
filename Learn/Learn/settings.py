@@ -51,8 +51,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Learn.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -71,6 +69,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Learn.wsgi.application'
 
+ROOT_URLCONF = 'Learn.urls'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

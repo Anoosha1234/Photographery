@@ -92,12 +92,11 @@ class Photographers(models.Model):
         return f'{self.photographer_last_name}, {self.photographer_first_name}'
 
 class BookApointment(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     user_booking_name = models.CharField(max_length=30)
     user_booking_phone = models.CharField(max_length=30)
     user_booking_datetime = models.DateTimeField()
-    user_booking_category = models.CharField(max_length=30)
-    user_booking_photographer = models.CharField(max_length=30)
+    user_booking_category = models.ForeignKey(BookingCategories, on_delete=models.CASCADE)
+    user_booking_photographer = models.ForeignKey(Photographers, on_delete=models.CASCADE)
     user_booking_address = models.CharField(max_length=30)
 
     def __str__(self):

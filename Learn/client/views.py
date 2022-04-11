@@ -57,13 +57,15 @@ def order(request):
         try:
             name=request.POST['name']
             photographer=request.POST.get('photographer')
+            ph=Photographers.objects.filter(photographer_first_name=photographer).first()
             date=datetime.strptime(request.POST['date'], "%Y-%m-%dT%H:%M")
             address=request.POST['address']
             category=request.POST['category']
+            ct=BookingCategories.objects.filter(category_name=category).first()
             phone=request.POST['phone']
             # print(name,description,date,address,category,phone)
-            usr=BookApointment(user_booking_name=name,user_booking_phone=phone,user_booking_datetime=date,user_booking_photographer=photographer,user_booking_address=address,user_booking_category=category)
-            usr.save()
+            BookApointment.objects.create(user_booking_name=name,user_booking_phone=phone,user_booking_datetime=date,user_booking_photographer=ph,user_booking_address=address,user_booking_category=ct)
+            # usr.save()
             # user=User.objects.get(id=2)
             # print(user)
             # BookApointment.user_id=user
